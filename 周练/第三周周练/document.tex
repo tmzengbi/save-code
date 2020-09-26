@@ -1,0 +1,47 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\title{第三周周练题解}
+\author{ZeNgBi}
+\date{}
+\begin{document}
+	\maketitle
+	\subsection*{P1000 数列编辑器}
+	两个栈，一个栈存光标前的数，一个栈存光标后的数，可以用两个数组，一个动态维护光标前的最大前缀和，一个维护光标前的前缀和，查询时可以$O(1)$输出，时间复杂度$O(n)$
+	
+	\subsection*{P1001 堆排序}
+	堆排模板题
+	
+	\subsection*{P1002 合并果子}
+	先把所有值放入堆中，用小根堆动态维护最大值，每次取出最小两个数，相加后放入堆中维护，堆空时算法结束
+	
+	把每次的代价相加就是答案，时间复杂度$O(nlogn)$复杂度上界为构造小根堆
+	
+	\subsection*{P1003 新壳栈}
+	操作1和操作2都是正常栈的操作，操作3可以暴力处理，注意异常输出。
+	
+	\subsection*{P1004 Zayin买礼物}
+	可以先以礼物好看值为关键字从大到小排列礼物，从大到小遍历$b_i$，并维护一个小根堆，如果当前$b_i\leq d_j$那么将这个礼物放到小根堆中维护，然后取出最小值，如果堆为空取不出最小值那么无法满足。答案为每次最小值的和。
+	
+	\subsection*{P1005 亲戚}
+	并查集板子题
+	
+	\subsection*{P1006 青蛙求偶记}
+	求出两两点的距离求出后排序，从小到大遍历这些边，将每次边的两个顶点放入并查集中维护，当起点1和终点2在同一个并查集中时，输出边长。
+	
+	\subsection*{P1007 食物链}
+	需要开3倍并查集分别保存A B C三类动物(1-N表示A (N+1)-(N*2)表示B (N*2+1)-(N*3)表示C)
+	
+	以下merge都表示合并并查集的操作，pre[ ]表示并查集数组，Find表示找爹函数。
+	
+	如果x和y是同类那么x，y在不冲突的前提下可能都是A，可能都是B，也可能都是C。
+	merge(x,y),merge(x+N,y+N),merge(x+2*N,y+2*N) 表示三种情况下A,B都是同类
+	
+	如果x吃y那么x，y在不冲突的前提下可能x是A，y是B。或者x是B，y是C。或者x是C，y是A
+	于是merge(x,y+N);merge(x+N,y+2*N);merge(x+2*N,y);
+	
+	x和y是同类时，x与y不冲突表示x不吃y而且y不吃x 就是Find(x)!=Find(y+N)且Find(y+N)!=Find(x)这里只需要判断A和B就可以，因为B对C和C对A是对称的
+	
+	x吃y时，x与y不冲突表示x不与y是同类而且y不吃x 那就是Find(x)!=Find(y)且Find(x+N)!=Find(y)
+	
+	注意x或y大于N时候的特判
+\end{document}

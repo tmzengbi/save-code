@@ -1,0 +1,36 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{ulem}
+\title{第六周周练题解}
+\author{ZeNgBi}
+\date{}
+\begin{document}
+	\maketitle
+	\subsection*{P1000}
+	第零周周练第一题，题解请回顾第零周周练题解
+	\subsection*{P1001}
+	贪心策略是先拿所有是11的人（假设有n个），令01为a，10为b，拿$min(a,b)$数量的最大影响力的01和10，最后将剩下的人根据影响力排序从大到小拿n个为最优解。
+	\subsection*{P1002}
+	\subsection*{P1003}
+	贪心策略是按$l_i*r_i$从小到大排序，以下是证明。
+	
+	假设第$N_n$排在$N_{n+1}$前面时，有最优解，此时他们左右手数字分别为$a_1 \:b_1\: a_2 \:b_2\: $。此时令前面所有人左手数字乘积为$k=\prod_{1}^{n-1} l_i$
+	
+	那么$ans_1=min(\frac{k}{b_1},\frac{ka_1}{b_2})$同理如果他们反过来站那么$ans_2=min(\frac{k}{b_2},\frac{ka_2}{b_1})$ 如果$ans_1 < ans_2$ 有$\frac{ka_1}{b_2}<\frac{ka_2}{b_1}$即$a_1*b_1<a_2*b_2$
+	
+	数字会很大注意写高精
+	\subsection*{P1004}
+	每行至少要区一个黑块，那么这一行没有选过且只有一个黑块时，只能选它，如果某一行没有选过且这一行上面没有黑块了那么无法完成。如果最后没有选过的行都至少有两个或以上个黑块，必然可以选出一个结果。
+	\subsection*{P1005}
+	记录砍能造成的最大伤害为k，并将伤害比k大的丢记录下来，和为sum。
+	
+	然后一直砍怪物，直到可以一套丢连击可以秒掉它。
+	
+	\subsection*{P1006}
+	答案是Yes，详细证明见ppt讲解
+	
+	\subsection*{P1007}
+	首先可以可以证明单调序列答案一定小于摆动序列
+	
+	摆动序列中间的贡献大于两边，所以中间数大的的要尽可能大，小的要尽可能小，摆动方向为$\uparrow \downarrow \uparrow$和方向为$\downarrow \uparrow \downarrow$是两种情况，要分别讨论。
+\end{document}
