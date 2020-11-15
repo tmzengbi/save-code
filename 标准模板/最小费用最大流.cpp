@@ -55,7 +55,7 @@ class MCMF{
 		if(c[to]==inf) return false;
 		int tmp=to;
 		Max_flow+=a[to];
-		Max_cost+=1LL*c[to]*a[to];
+		Min_cost+=1LL*c[to]*a[to];
 		while(true){
 			auto &e=G[pre[tmp]],&re=G[pre[tmp]^1];
 			e.now+=a[to];re.now-=a[to];
@@ -65,7 +65,7 @@ class MCMF{
 		return true;
 	}
 	public:
-	ll Max_flow,Max_cost;
+	ll Max_flow,Min_cost;
 	void init(){
 		G.clear();
 		for(int i=1;i<=n;++i)
@@ -83,7 +83,7 @@ class MCMF{
 		edges[v].push_back(G.size()-1);
 	}
 	void flow(){
-		Max_flow=0;Max_cost=0;
+		Max_flow=0;Min_cost=0;
 		while(spfa());
 	}
 }ff;
@@ -97,5 +97,5 @@ int main(){
 		ff.addedge(u,v,cap,cost);
 	}
 	ff.flow();
-	printf("%lld %lld\n",ff.Max_flow,ff.Max_cost);
+	printf("%lld %lld\n",ff.Max_flow,ff.Min_cost);
 }
