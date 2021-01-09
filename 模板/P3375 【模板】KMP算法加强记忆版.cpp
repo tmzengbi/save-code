@@ -1,47 +1,34 @@
-#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<queue>
-#include<cmath>
-#include<algorithm>
-#include<vector>
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-int Next[1000010];
-char s1[1000010],s2[1000010];
-void getNext(char *s)
-{
-	int len=strlen(s),j=0;
-	Next[0]=-1;Next[1]=0;
-	for(int i=1;i<len;i++)
-	{
-		j=Next[i];
-		while(j&&s[i]!=s[j]) j=Next[j];
-		Next[i+1]=s[i]==s[j]?j+1:0;
+const int maxn=1e6+10;
+char s[maxn],t[maxn];
+int nxt[maxn];
+void getNxt(char *s){
+	nxt[0]=-1;
+	int n=strlen(s),k;
+	for(int i=1;i<=n;++i){
+		k=nxt[i-1];
+		while(k!=-1&&s[k]!=s[i-1]) k=nxt[k];
+		nxt[i]=k+1;
 	}
 }
-void kmp(char *s1,char *s2)
-{
-	int len1=strlen(s1),len2=strlen(s2),j=0;
-	for(int i=0;i<len1;i++)
-	{
-		while(j&&s1[i]!=s2[j]) j=Next[j-1]+1;
-		if(s1[i]==s2[j]) j++;
-		if(j==len2) printf("%d\n",i-len2+2);
-	}	
+void kmp(char *s,char *t){
+	int n=strlen(s),m=strlen(t),k=0;
+	for(int i=0;i<m;++i){
+		while(k!=-1&&s[k]!=t[i]) k=nxt[k];
+		if(++k==n) {
+			printf("%d\n",i+2-n);
+			k=nxt[k];
+		}
+	}
 }
-int main()
-{
-
-	scanf("%s%s",s1,s2);
-	getNext(s2);
-	kmp(s1,s2);
-	int len=strlen(s2);
-	for(int i=1;i<=len;i++)
-		printf("%d ",Next[i]);
-	system("pause");
+int main() {
+	scanf("%s%s",s,t);
+	getNxt(t);
+	kmp(t,s);
+	int n=strlen(t);
+	for(int i=1;i<=n;++i){
+		printf("%d",nxt[i]);
+		if(i!=n) printf(" ");
+	}
 }
-/*
-abcdabcdabd
-abcdabd
-*/
