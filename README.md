@@ -1,3 +1,3 @@
 # save-code
 
-### This is a repository to save my code
+### A repository to save code
