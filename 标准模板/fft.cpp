@@ -2,9 +2,9 @@
 using namespace std;
 typedef long long ll;
 struct cp {
-	long double real,imag;
+	double real,imag;
 	cp() {real=imag=0;}
-	cp(long double real,long double imag):real(real),imag(imag){}
+	cp(double real,double imag):real(real),imag(imag){}
 	cp operator + (const cp &b) const {
 		return cp(real+b.real,imag+b.imag);
 	}
@@ -18,7 +18,7 @@ struct cp {
 		return *this=*this*b;
 	}
 };
-const long double pi=acos(-1);
+const double pi=acos(-1);
 const int maxn=3e5+10;
 int r[maxn];
 void init(int n) {
