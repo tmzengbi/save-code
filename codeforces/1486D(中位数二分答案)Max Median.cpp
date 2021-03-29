@@ -5,21 +5,13 @@ const int maxn=2e5+10;
 int a[maxn],n,k,c[maxn],s[maxn];
 bool check(int x) {
 	for(int i=1;i<=n;++i){
-		c[i]=(a[i]<x);
+		c[i]=(a[i]<x)?-1:1;
 		s[i]=s[i-1]+c[i];
 	}
-	int l=1,cnt=0;
-	for(int i=1;i<k;++i)
-		cnt+=c[i];
+	int mn=0;
 	for(int i=k;i<=n;++i) {
-		cnt+=c[i];
-		while(i-l>=k&&c[l]==1)
-			cnt-=c[l++];
-		if(i-k>l&&(i-k-l+1)%2==0&&s[i-k]-s[l-1]==(i-k-l+1)/2){
-			while(l<i-k+1)
-				cnt-=c[l++];
-		}
-		if(cnt<=(i-l)/2) return true;
+		if(s[i]-mn>0) return true;
+		mn=min(mn,s[i-k+1]);
 	}
 	return false;
 }
