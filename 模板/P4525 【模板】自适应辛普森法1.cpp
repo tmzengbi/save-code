@@ -13,8 +13,8 @@ double solve(double l,double r,const double eps=1e-6) {
 	double mid=(l+r)/2;
 	double res1=simp(l,r);
 	double res2=simp(l,mid)+simp(mid,r);
-	if(fabs(res1-res2)<eps) {
-		return res2;
+	if(fabs(res1-res2)<eps*15) {
+		return res2+(res2-res1)/15;
 	} else {
 		return solve(l,mid,eps/2)+solve(mid,r,eps/2);
 	}
